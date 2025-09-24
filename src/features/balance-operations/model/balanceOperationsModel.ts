@@ -1,8 +1,8 @@
 import {createEffect, createEvent, createStore, sample} from "effector";
-import type {Place, UpdateBalanceParams} from "../../../shared/lib/types/types";
+import type {Place, UpdateBalanceParams} from "../../../shared";
 
 export const updateBalance = createEvent<
-  Exclude<UpdateBalanceParams, {delta: number}> & {type: "withdraw" | "deposit"}
+  {deviceId: string; placeId: number} & {type: "withdraw" | "deposit"}
 >();
 export const setInputAmount = createEvent<string>();
 export const closeModal = createEvent();
