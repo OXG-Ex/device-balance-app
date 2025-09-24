@@ -4,7 +4,7 @@ import type {Place} from "../../../shared/lib/types/types";
 
 interface PlayerItemProps {
   place: Place;
-  actionsSlot: ReactNode;
+  actionsSlot?: ReactNode;
 }
 
 export const PlayerItem: FC<PlayerItemProps> = ({place, actionsSlot}) => {
@@ -16,7 +16,7 @@ export const PlayerItem: FC<PlayerItemProps> = ({place, actionsSlot}) => {
           <div className="p-2">{`Place: ${place.place} `}</div>
           <div className="p-2">{`Device ID: ${place.device_id} `}</div>
         </Stack>
-        {actionsSlot && actionsSlot}
+        {actionsSlot}
       </Card.Body>
     </Card>
   );

@@ -1,10 +1,22 @@
+import type {FC} from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import {PlayerItem} from "../../../entities/player-item/ui/PlayerItem";
+import {BalanceOperationsButton} from "../../../features/balance-operations/ui/BalanceOperationsButton";
+import type {Place} from "../../../shared/lib/types/types";
 
-export const PlayerList = ({players, deviceId}) => (
+type PlayerListProps = {
+  players: Place[];
+  //   deviceId: number;
+};
+
+export const PlayerList: FC<PlayerListProps> = ({players}) => (
   <ListGroup>
-    {players.map((player) => (
-      <PlayerItem key={player.id} player={player} deviceId={deviceId} />
+    {players.map((place, idx) => (
+      <PlayerItem
+        key={idx}
+        place={place}
+        actionsSlot={<BalanceOperationsButton />}
+      />
     ))}
   </ListGroup>
 );
