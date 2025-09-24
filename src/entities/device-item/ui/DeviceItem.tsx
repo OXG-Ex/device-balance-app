@@ -1,6 +1,6 @@
 import type {FC} from "react";
 import {ListGroup} from "react-bootstrap";
-import type {Device} from "../../../shared/lib/types/types";
+import type {Device} from "../../../shared";
 
 interface DeviceItemProps {
   device: Device;

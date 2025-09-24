@@ -1,8 +1,8 @@
 import {useGate, useUnit} from "effector-react";
 import type {FC} from "react";
 import {ListGroup} from "react-bootstrap";
-import {DeviceItem} from "../../../entities/device-item/ui/DeviceItem";
-import type {Device} from "../../../shared/lib/types/types";
+import {DeviceItem} from "../../../entities";
+import type {Device} from "../../../shared";
 import {$devices, DevicesListGate} from "../model/deviceListModel";
 
 type DevicesListProps = {

@@ -1,7 +1,7 @@
 import {createEvent, createStore, sample} from "effector";
-import {dataUpdated} from "../../features/balance-operations/model/balanceOperationsModel";
+import {balanceOperationsModel} from "../../features";
 import type {Device} from "../../shared/lib/types/types";
-import {refetchData} from "../../widgets/device-list/model/deviceListModel";
+import {deviceListModel} from "../../widgets";
 
 export const selectDevice = createEvent<Device>();
 
@@ -11,6 +11,6 @@ export const $selectedDevice = createStore<Device | null>(null).on(
 );
 
 sample({
-  clock: dataUpdated,
-  target: refetchData,
+  clock: balanceOperationsModel.dataUpdated,
+  target: deviceListModel.refetchData,
 });

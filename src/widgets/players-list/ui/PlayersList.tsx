@@ -1,8 +1,8 @@
 import type {FC} from "react";
 import ListGroup from "react-bootstrap/ListGroup";
-import {PlayerItem} from "../../../entities/player-item/ui/PlayerItem";
-import {BalanceOperationsButton} from "../../../features/balance-operations/ui/BalanceOperationsButton";
-import type {Place} from "../../../shared/lib/types/types";
+import {PlayerItem} from "../../../entities";
+import {BalanceOperationsButton} from "../../../features";
+import type {Place} from "../../../shared";
 
 type PlayerListProps = {
   players?: Place[];

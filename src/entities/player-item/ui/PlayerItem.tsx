@@ -1,6 +1,6 @@
 import type {FC, ReactNode} from "react";
 import {Card, Stack} from "react-bootstrap";
-import type {Place} from "../../../shared/lib/types/types";
+import type {Place} from "../../../shared";
 
 interface PlayerItemProps {
   place: Place;

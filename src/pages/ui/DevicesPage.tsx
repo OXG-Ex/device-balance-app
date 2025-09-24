@@ -1,8 +1,8 @@
 import {useUnit} from "effector-react";
 import type {FC} from "react";
 import {Card, Col, Container, Row} from "react-bootstrap";
-import {DeviceList} from "../../widgets/device-list/ui/DeviceList";
-import {PlayerList} from "../../widgets/players-list/ui/PlayersList";
+
+import {DeviceList, PlayerList} from "../../widgets";
 import {$selectedDevice, selectDevice} from "../model/devicesPageModel";
 
 export const DevicesPage: FC = () => {
