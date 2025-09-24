@@ -1,8 +1,10 @@
-import {createEffect, createStore, sample} from "effector";
+import {createEffect, createEvent, createStore, sample} from "effector";
 import {createGate} from "effector-react";
 import type {Device} from "../../../shared/lib/types/types";
 
 export const DevicesListGate = createGate();
+
+export const refetchData = createEvent();
 
 export const $devices = createStore<Device[]>([]);
 
@@ -13,7 +15,7 @@ export const fetchDevicesFx = createEffect(async () => {
 });
 
 sample({
-  clock: DevicesListGate.open,
+  clock: [DevicesListGate.open, refetchData],
   target: fetchDevicesFx,
 });
 

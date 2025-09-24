@@ -10,19 +10,19 @@ export function makeServer() {
         {
           created_at: "2025-09-24T07:00:00Z",
           updated_at: "2025-09-24T07:30:00Z",
-          id: 1,
+          id: "1",
           name: "Device Alpha",
           places: [
             {
               balances: 120.5,
               currency: "RUB",
-              device_id: 1,
+              deviceId: "1",
               place: 1,
             },
             {
               balances: 75.0,
               currency: "RUB",
-              device_id: 1,
+              deviceId: "1",
               place: 2,
             },
           ],
@@ -30,13 +30,13 @@ export function makeServer() {
         {
           created_at: "2025-09-23T10:00:00Z",
           updated_at: "2025-09-24T07:30:00Z",
-          id: 2,
+          id: "2",
           name: "Device Beta",
           places: [
             {
               balances: 200.0,
               currency: "USD",
-              device_id: 2,
+              deviceId: "2",
               place: 1,
             },
           ],
@@ -48,9 +48,9 @@ export function makeServer() {
         return devices;
       });
 
-      // GET /a/devices/:device_id/
-      this.get("/devices/:device_id/", (_, request) => {
-        const id = Number(request.params.device_id);
+      // GET /a/devices/:deviceId/
+      this.get("/devices/:deviceId/", (_, request) => {
+        const id = request.params.deviceId;
         const device = devices.find((d) => d.id === id);
         if (!device) {
           return new Response(
@@ -62,13 +62,13 @@ export function makeServer() {
         return device;
       });
 
-      // POST /a/devices/:device_id/place/:place_id/update
-      this.post("/devices/:device_id/place/:place_id/update", (_, request) => {
-        const device_id = Number(request.params.device_id);
-        const place_id = Number(request.params.place_id);
+      // POST /a/devices/:deviceId/place/:placeId/update
+      this.post("/devices/:deviceId/place/:placeId/update", (_, request) => {
+        const deviceId = request.params.deviceId;
+        const placeId = Number(request.params.placeId);
         const {delta} = JSON.parse(request.requestBody);
 
-        const device = devices.find((d) => d.id === device_id);
+        const device = devices.find((d) => d.id === deviceId);
         if (!device) {
           return new Response(
             400,
@@ -76,7 +76,7 @@ export function makeServer() {
             {data: "Not found", err: "Device not found"}
           );
         }
-        const place = device.places.find((p) => p.place === place_id);
+        const place = device.places.find((p) => p.place === placeId);
         if (!place) {
           return new Response(
             400,
@@ -111,7 +111,7 @@ export function makeServer() {
         return {
           balances: place.balances,
           currency: place.currency,
-          device_id: device.id,
+          deviceId: device.id,
           place: place.place,
         };
       });

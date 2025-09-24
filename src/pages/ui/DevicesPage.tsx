@@ -1,23 +1,39 @@
 import {useUnit} from "effector-react";
 import type {FC} from "react";
-import {Card} from "react-bootstrap";
+import {Card, Col, Container, Row} from "react-bootstrap";
 import {DeviceList} from "../../widgets/device-list/ui/DeviceList";
-import {$selectedId, selectDevice} from "../model/devicesPageModel";
+import {PlayerList} from "../../widgets/players-list/ui/PlayersList";
+import {$selectedDevice, selectDevice} from "../model/devicesPageModel";
 
 export const DevicesPage: FC = () => {
-  const {selectDeviceHandler, selectedId} = useUnit({
+  const {selectDeviceHandler, selectedDevice} = useUnit({
     selectDeviceHandler: selectDevice,
-    selectedId: $selectedId,
+    selectedDevice: $selectedDevice,
   });
   return (
-    <Card>
-      <Card.Header>Devices List</Card.Header>
-      <Card.Body>
-        <DeviceList
-          onSelectDevice={selectDeviceHandler}
-          selectedDeviceId={selectedId}
-        />
-      </Card.Body>
-    </Card>
+    <Container className="pt-3">
+      <Row gap={80}>
+        <Col>
+          <Card>
+            <Card.Header>Devices List</Card.Header>
+            <Card.Body>
+              <DeviceList
+                onSelectDevice={selectDeviceHandler}
+                selectedDevice={selectedDevice}
+              />
+            </Card.Body>
+          </Card>
+        </Col>
+
+        <Col>
+          <Card>
+            <Card.Header>Places List</Card.Header>
+            <Card.Body>
+              <PlayerList players={selectedDevice?.places} />
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };

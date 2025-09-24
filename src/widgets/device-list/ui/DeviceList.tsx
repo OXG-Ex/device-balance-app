@@ -2,16 +2,17 @@ import {useGate, useUnit} from "effector-react";
 import type {FC} from "react";
 import {ListGroup} from "react-bootstrap";
 import {DeviceItem} from "../../../entities/device-item/ui/DeviceItem";
+import type {Device} from "../../../shared/lib/types/types";
 import {$devices, DevicesListGate} from "../model/deviceListModel";
 
 type DevicesListProps = {
-  selectedDeviceId: number | null;
-  onSelectDevice: (id: number) => void;
+  selectedDevice: Device | null;
+  onSelectDevice: (device: Device) => void;
 };
 
 export const DeviceList: FC<DevicesListProps> = ({
   onSelectDevice,
-  selectedDeviceId,
+  selectedDevice,
 }) => {
   useGate(DevicesListGate);
 
@@ -23,8 +24,8 @@ export const DeviceList: FC<DevicesListProps> = ({
         <DeviceItem
           device={device}
           key={device.id}
-          onClick={() => onSelectDevice(device.id)}
-          active={selectedDeviceId === device.id}
+          onClick={() => onSelectDevice(device)}
+          active={selectedDevice?.id === device.id}
         />
       ))}
     </ListGroup>

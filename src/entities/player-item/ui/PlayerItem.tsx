@@ -14,7 +14,7 @@ export const PlayerItem: FC<PlayerItemProps> = ({place, actionsSlot}) => {
         <Stack gap={3}>
           <div className="p-2">{`Balance: ${place.balances} ${place.currency}`}</div>
           <div className="p-2">{`Place: ${place.place} `}</div>
-          <div className="p-2">{`Device ID: ${place.device_id} `}</div>
+          <div className="p-2">{`Device ID: ${place.deviceId} `}</div>
         </Stack>
         {actionsSlot}
       </Card.Body>

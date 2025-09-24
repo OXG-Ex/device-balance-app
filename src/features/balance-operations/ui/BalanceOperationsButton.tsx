@@ -1,23 +1,40 @@
-import {useState, type FC} from "react";
+import {useUnit} from "effector-react";
+import {type FC} from "react";
 import {Button, Modal} from "react-bootstrap";
+import {
+  $isModalOpen,
+  closeModal,
+  openModal,
+} from "../model/balanceOperationsModel";
 import {BalanceOperationsModal} from "./BalanceOperationsModal";
 
-interface BalanceOperationsButtonProps {}
+interface BalanceOperationsButtonProps {
+  deviceId: string;
+  placeId: number;
+}
 
-export const BalanceOperationsButton: FC<BalanceOperationsButtonProps> = () => {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+export const BalanceOperationsButton: FC<BalanceOperationsButtonProps> = ({
+  deviceId,
+  placeId,
+}) => {
+  const {closeModalHandler, isModalOpen, openModalHandler} = useUnit({
+    isModalOpen: $isModalOpen,
+    openModalHandler: openModal,
+    closeModalHandler: closeModal,
+  });
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary" onClick={openModalHandler}>
         Actions
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
-        <BalanceOperationsModal onClose={handleClose} onSubmit={console.log} />
+      <Modal show={isModalOpen} onHide={closeModalHandler}>
+        <BalanceOperationsModal
+          onClose={closeModalHandler}
+          deviceId={deviceId}
+          placeId={placeId}
+        />
       </Modal>
     </>
   );

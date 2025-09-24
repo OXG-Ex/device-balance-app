@@ -1,6 +1,6 @@
 export type Device = {
   created_at: string;
-  id: number;
+  id: string;
   name: string;
   places: Place[];
   updated_at: string;
@@ -9,6 +9,12 @@ export type Device = {
 export type Place = {
   balances: number;
   currency: string;
-  device_id: number;
+  deviceId: string;
   place: number;
+};
+
+export type UpdateBalanceParams = {
+  deviceId: string;
+  placeId: number;
+  delta: number;
 };

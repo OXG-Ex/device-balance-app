@@ -5,18 +5,28 @@ import {BalanceOperationsButton} from "../../../features/balance-operations/ui/B
 import type {Place} from "../../../shared/lib/types/types";
 
 type PlayerListProps = {
-  players: Place[];
-  //   deviceId: number;
+  players?: Place[];
 };
 
-export const PlayerList: FC<PlayerListProps> = ({players}) => (
-  <ListGroup>
-    {players.map((place, idx) => (
-      <PlayerItem
-        key={idx}
-        place={place}
-        actionsSlot={<BalanceOperationsButton />}
-      />
-    ))}
-  </ListGroup>
-);
+export const PlayerList: FC<PlayerListProps> = ({players}) => {
+  if (!players) {
+    return "No device selected";
+  }
+
+  return (
+    <ListGroup>
+      {players?.map((place, idx) => (
+        <PlayerItem
+          key={idx}
+          place={place}
+          actionsSlot={
+            <BalanceOperationsButton
+              deviceId={place.deviceId}
+              placeId={place.place}
+            />
+          }
+        />
+      ))}
+    </ListGroup>
+  );
+};
