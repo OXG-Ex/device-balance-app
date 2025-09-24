@@ -1,10 +1,13 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
+import {StrictMode} from "react";
+import {createRoot} from "react-dom/client";
+import App from "./App.tsx";
+import "./index.css";
+import {makeServer} from "./shared/lib/fake-api/server.ts";
 
-createRoot(document.getElementById('root')!).render(
+makeServer();
+
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App />
-  </StrictMode>,
-)
+  </StrictMode>
+);
