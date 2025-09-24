@@ -26,7 +26,7 @@ export const BalanceOperationsButton: FC<BalanceOperationsButtonProps> = ({
   return (
     <>
       <Button variant="primary" onClick={openModalHandler}>
-        Actions
+        Edit balance
       </Button>
 
       <Modal show={isModalOpen} onHide={closeModalHandler}>
