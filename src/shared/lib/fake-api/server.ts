@@ -6,7 +6,7 @@ export function makeServer() {
       this.namespace = "a";
 
       // Мок-данные
-      let devices = [
+      const devices = [
         {
           created_at: "2025-09-24T07:00:00Z",
           updated_at: "2025-09-24T07:30:00Z",
